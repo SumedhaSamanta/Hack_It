@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int op(int N)
+{   int b,c,n;
+    int opt[N];
+    if(N<=6)
+        return N;
+    for(n=1;n<=6;n++)
+        opt[n-1]=n;
+    for(n=7;n<=N;n++)
+    {
+        opt[n-1]=0;
+        for(b=n-3;b>=1;b--)
+        {
+            c=(n-b-1)*opt[b-1];
+            if(c>opt[n-1])
+            {
+                opt[n-1]=c;
+            }
+        }
+    }
+    return opt[N-1];
+}
+int main() {
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */  
+    int n;
+    scanf("%d",&n);
+    printf("%d",op(n));    
+    return 0;
+}
